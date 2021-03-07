@@ -23,7 +23,7 @@ yarn build
 ```
 - src
   |- assets                         全域的 scss 
-      |- base.scss                  通用設定
+      |- base.scss                  通用設定
       |- custom-element-ui.scss     自定義的 element-ui style
       |- theme.scss                 定義顏色風格
   |- components                     可重用的 Vue 元件
@@ -49,7 +49,7 @@ yarn build
 1. `node-sass ^5.0.0`
    - 可定義變數、使用巢狀類別結構及引入其他 scss module
 2. `ElementUI ^2.15.1`
-   - 一個基於 Vue 的 Layout 與控制項元件框架，用於開發簡約且彈性的使用者介面
+   - 一個基於 Vue 的 Layout 與控制項元件框架，用於開發簡約且彈性的使用者介面
 3. `vue-property-decorator ^8.3.0`
    - 相依於 vue-class-component，在使用 TypeScript 時可以更方便的用於型別檢查，且支援多種 Vue 功能的 decorator。
 4. `axios ^0.21.1`
@@ -62,7 +62,7 @@ yarn build
 2. 為何使用 vue-property-decorator?
     以 TypeScript 開發前端程式碼是一個利於團隊協作、落實物件導向精神且符合程式即文件的方式，vue-property-decorator 很好的補足了 Vue 2 在支援 TypeScript 上的不足之處，它可以使我在以 class 編寫 Vue 元件時以 decorator 向 Vue 底層註冊 Prop, components 等屬性。
 3. 為何要有 services 目錄?
-    在越來越大的專案中，後端可能會根據不同目的開出不同的 API，或是單一前端可能會需要向不同的 server 發出請求，這時如果各種 API 散落在許多不同的 Vue 元件中，會造成重複的程式碼過多而維護困難，或是想在特定的幾支 API 掛上相同的 Token，也會難以擴充；這時候如果使用 service 將不同目的的 API 區分開來會更好管理。
+    在越來越大的專案中，後端可能會根據不同目的開出不同的 API，或是單一前端可能會需要向不同的 server 發出請求，這時如果各種 API 散落在許多不同的 Vue 元件中，會造成重複的程式碼過多而維護困難，或是想在特定的幾支 API 掛上相同的 Token，也會難以擴充；這時候如果使用 service 將不同目的的 API 區分開來會更好管理。
 
 ## 我遇到的困難
 
