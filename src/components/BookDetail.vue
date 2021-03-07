@@ -2,12 +2,18 @@
   <el-row class="book-detail-wrapper">
     <el-col :span="14">
       <div class="book-detail-input">
-        <span>價格 </span>
-        <el-input-number v-model="bookPrice" :size="size"></el-input-number>
+        <span class="label">價格</span>
+        <el-input-number
+          v-model="bookProfile.price"
+          :size="size"
+        ></el-input-number>
       </div>
       <div class="book-detail-input">
-        <span>數量 </span>
-        <el-input-number v-model="bookAmount" :size="size"></el-input-number>
+        <span class="label">數量</span>
+        <el-input-number
+          v-model="bookProfile.count"
+          :size="size"
+        ></el-input-number>
       </div>
     </el-col>
     <el-col :span="10">
@@ -17,20 +23,32 @@
 </template>
 
 <script lang="ts">
+import { IBookProfile } from '@/services/unnotech.dto'
+import { unnotechService } from '@/services/unnotech.service'
 import { isSmallScreen } from '@/utils/screen-size-checker'
 import { InputNumberSize } from 'element-ui/types/input-number'
-import { Component, Vue } from 'vue-property-decorator'
+import { Component, Vue, Watch } from 'vue-property-decorator'
 
 @Component
 export default class BookDetail extends Vue {
   private size: InputNumberSize = 'large'
-  private bookAmount: number = 0
-  private bookPrice: number = 0
+  private bookProfile: IBookProfile = {
+    id: 0,
+    price: 0,
+    count: 0,
+  }
 
   public mounted() {
     if (isSmallScreen()) {
       this.size = 'small'
     }
+  }
+
+  @Watch('$route')
+  public async updateBook() {
+    this.bookProfile = (
+      await unnotechService.get(`profile/${this.$route.params.id}`)
+    ).data
   }
 
   private submit() {}

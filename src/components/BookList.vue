@@ -8,9 +8,7 @@
       :md="8"
       class="book-list-content"
     >
-      <router-link :to="`/books/${book.id}`">
-        <BookCard></BookCard>
-      </router-link>
+      <BookCard :book="book"></BookCard>
     </el-col>
   </el-row>
 </template>
@@ -20,13 +18,9 @@ import { Component, Vue } from 'vue-property-decorator'
 import BookCard from './BookCard.vue'
 import { isSmallScreen } from '@/utils/screen-size-checker'
 import { unnotechService } from '@/services/unnotech.service'
+import { IBook } from '@/services/unnotech.dto'
 
 type RowType = 'grid' | 'flex'
-interface IBook {
-  id: number
-  name: string
-  image: string
-}
 
 @Component({
   components: { BookCard },
@@ -39,24 +33,23 @@ export default class BookList extends Vue {
     if (isSmallScreen()) {
       this.rowType = 'grid'
     }
-    this.bookList = await unnotechService.get('/books').then(r => r.data)
+    this.bookList = (await unnotechService.get('/books')).data
   }
 }
 </script>
 
 <style scoped>
 .book-list-wrapper {
-  width: 100%;
+  height: 350px;
   overflow-x: scroll;
-  min-height: 260px;
   border: 1px solid rgb(220, 220, 220);
   border-radius: 4px;
+  padding: 10px;
 }
 
 .book-list-content {
   display: flex;
   justify-content: center;
   align-items: center;
-  padding: 5px;
 }
 </style>
