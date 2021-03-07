@@ -26,6 +26,8 @@ yarn build
 2. ElementUI ^2.15.1
 3. vue-property-decorator ^8.3.0
   相依於 vue-class-component 在使用 TypeScript 時可以更方便的用於型別檢查，且支援多種 Vue 功能的 Decorator。
+4. axios
+  用於實現 ajax 的 API 請求
 
 ## 我遇到的困難
 
