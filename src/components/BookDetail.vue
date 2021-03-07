@@ -43,6 +43,7 @@ export default class BookDetail extends Vue {
     if (isSmallScreen()) {
       this.size = 'small'
     }
+    this.updateBook()
   }
 
   @Watch('$route')
