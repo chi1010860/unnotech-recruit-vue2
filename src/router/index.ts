@@ -11,11 +11,13 @@ const routes: Array<RouteConfig> = [
   {
     path: '/books',
     name: 'Books',
+    meta: { title: 'Book List' },
     component: () =>
       import(/* webpackChunkName: "books" */ '../views/Books.vue'),
     children: [
       {
         path: ':id',
+        meta: { title: 'Book Detail Page' },
         component: () =>
           import(
             /* webpackChunkName: "detail" */ '../components/BookDetail.vue'
@@ -27,6 +29,11 @@ const routes: Array<RouteConfig> = [
 
 const router = new VueRouter({
   routes,
+})
+
+router.beforeEach((to, from, next) => {
+  window.document.title = to.meta.title
+  next()
 })
 
 export default router
