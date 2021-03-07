@@ -1,3 +1,4 @@
+import '@/assets/base.scss'
 import { Button, Col, InputNumber, Row } from 'element-ui'
 import 'element-ui/lib/theme-chalk/index.css'
 import Vue from 'vue'
