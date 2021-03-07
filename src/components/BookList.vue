@@ -1,5 +1,5 @@
 <template>
-  <el-row class="book-list-wrapper" :type="rowType">
+  <el-row class="book-list-wrapper">
     <el-col
       v-for="book in bookList"
       :key="book.id"
@@ -16,23 +16,16 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator'
 import BookCard from './BookCard.vue'
-import { isSmallScreen } from '@/utils/screen-size-checker'
 import { unnotechService } from '@/services/unnotech.service'
 import { IBook } from '@/services/unnotech.dto'
-
-type RowType = 'grid' | 'flex'
 
 @Component({
   components: { BookCard },
 })
 export default class BookList extends Vue {
-  private rowType: RowType = 'flex'
   private bookList: IBook[] = []
 
   public async mounted() {
-    if (isSmallScreen()) {
-      this.rowType = 'grid'
-    }
     this.bookList = (await unnotechService.get('/books')).data
   }
 }
@@ -45,11 +38,19 @@ export default class BookList extends Vue {
   border: 1px solid rgb(220, 220, 220);
   border-radius: 4px;
   padding: 10px;
+  display: flex;
 }
 
 .book-list-content {
   display: flex;
   justify-content: center;
   align-items: center;
+}
+
+@media (max-width: 480px) {
+  .book-list-wrapper {
+    height: 60vh;
+    display: block;
+  }
 }
 </style>

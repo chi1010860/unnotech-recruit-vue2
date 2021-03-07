@@ -74,16 +74,28 @@ export default class BookDetail extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
 .book-detail-wrapper {
   height: 200px;
-  display: flex;
   align-items: center;
+  justify-content: center;
   border: 1px solid rgb(220, 220, 220);
   border-radius: 4px;
+  display: flex;
 }
 
 .book-detail-input {
-  margin: 10px;
+  margin: 10px 0;
+
+  .label {
+    margin-right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .book-detail-wrapper {
+    height: 30vh;
+    flex-direction: column;
+  }
 }
 </style>
