@@ -28,6 +28,7 @@ import { unnotechService } from '@/services/unnotech.service'
 import { isSmallScreen } from '@/utils/screen-size-checker'
 import { InputNumberSize } from 'element-ui/types/input-number'
 import { Component, Vue, Watch } from 'vue-property-decorator'
+import { Message } from 'element-ui'
 
 @Component
 export default class BookDetail extends Vue {
@@ -51,7 +52,25 @@ export default class BookDetail extends Vue {
     ).data
   }
 
-  private submit() {}
+  private async submit() {
+    if (this.bookProfile.id == 0) return // id 0 is default value
+
+    const res = await unnotechService.patch(
+      `profile/${this.bookProfile.id}`,
+      this.bookProfile,
+    )
+    if (res.status == 200) {
+      Message.success({
+        message: '修改成功！',
+        customClass: 'custom-el-message',
+      })
+    } else {
+      Message.error({
+        message: '修改失敗！',
+        customClass: 'custom-el-message',
+      })
+    }
+  }
 }
 </script>
 
