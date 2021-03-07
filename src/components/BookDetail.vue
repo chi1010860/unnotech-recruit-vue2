@@ -75,11 +75,13 @@ export default class BookDetail extends Vue {
 </script>
 
 <style scoped lang="scss">
+@import '../assets/theme.scss';
+
 .book-detail-wrapper {
   height: 200px;
   align-items: center;
   justify-content: center;
-  border: 1px solid rgb(220, 220, 220);
+  border: 1px solid $color-neutral;
   border-radius: 4px;
   display: flex;
 }

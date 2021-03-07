@@ -31,11 +31,13 @@ export default class BookList extends Vue {
 }
 </script>
 
-<style scoped>
+<style scoped lang="scss">
+@import '../assets/theme.scss';
+
 .book-list-wrapper {
   height: 350px;
   overflow-x: scroll;
-  border: 1px solid rgb(220, 220, 220);
+  border: 1px solid $color-neutral;
   border-radius: 4px;
   padding: 10px;
   display: flex;
