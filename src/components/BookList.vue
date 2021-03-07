@@ -26,7 +26,7 @@ export default class BookList extends Vue {
   private bookList: IBook[] = []
 
   public async mounted() {
-    this.bookList = (await unnotechService.get('/books')).data
+    this.bookList = await unnotechService.getBookList()
   }
 }
 </script>

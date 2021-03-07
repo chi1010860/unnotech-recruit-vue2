@@ -10,6 +10,7 @@
 <script lang="ts">
 import { IBook } from '@/services/unnotech.dto'
 import { Component, Prop, Vue } from 'vue-property-decorator'
+
 @Component
 export default class BookCard extends Vue {
   @Prop({ default: {} })

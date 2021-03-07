@@ -47,19 +47,19 @@ export default class BookDetail extends Vue {
 
   @Watch('$route')
   public async updateBook() {
-    this.bookProfile = (
-      await unnotechService.get(`profile/${this.$route.params.id}`)
-    ).data
+    let id = parseInt(this.$route.params.id)
+    this.bookProfile = await unnotechService.getBookProfile(id)
   }
 
   private async submit() {
     if (this.bookProfile.id == 0) return // id 0 is default value
 
-    const res = await unnotechService.patch(
-      `profile/${this.bookProfile.id}`,
+    const success = await unnotechService.updateBookProfile(
+      this.bookProfile.id,
       this.bookProfile,
     )
-    if (res.status == 200) {
+
+    if (success) {
       Message.success({
         message: '修改成功！',
         customClass: 'custom-el-message',
